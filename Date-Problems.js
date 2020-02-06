@@ -24,11 +24,7 @@ function addDays2Day(weekDay, days) {
         return weekDays[(weekDayIndex + remainingDay) - 7];
 }
 
-function getIsoDateDay(isoDate) {
-
-    // TODO: add REGEX in order to check the string date format
-    if (isoDate.length != 10)
-        return "incorrect format";
+function getIsoDateDay(isoDate) {    
 
     let date = new Date(isoDate);
     let day = date.toString().substr(0, 3);
