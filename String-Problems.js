@@ -8,7 +8,7 @@ function superReducedString(s) {
 
             if(reducedStr[i] === reducedStr[i+1]){
 
-                reducedStr = reducedStr.substring(0,i) + reducedStr.substring((i+2),                        reducedStr.length);
+                reducedStr = reducedStr.substring(0,i) + reducedStr.substring((i+2),reducedStr.length);
 
                 //Reset for loop
                 //It needs to assess the string again!
