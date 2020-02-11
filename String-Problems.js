@@ -140,17 +140,49 @@ function separateNumbers(s) {
 function funnyString(s) {
 
     let isFunny = "Funny";
-    for(let i=s.length-1; i >=1; i--){
+    for (let i = s.length - 1; i >= 1; i--) {
 
-        let diffOrigin = Math.abs(s.charCodeAt(i)-s.charCodeAt(i-1));
-        let j = (s.length-1) - i ;
-        let diffReversed = Math.abs(s.charCodeAt(j+1)-s.charCodeAt(j));
+        let diffOrigin = Math.abs(s.charCodeAt(i) - s.charCodeAt(i - 1));
+        let j = (s.length - 1) - i;
+        let diffReversed = Math.abs(s.charCodeAt(j + 1) - s.charCodeAt(j));
 
-        if(diffOrigin!==diffReversed){
+        if (diffOrigin !== diffReversed) {
             isFunny = "Not Funny";
             break;
         }
     }
 
     return isFunny;
+}
+
+// *** Alternating Characters *** 
+//You are given a string containing characters A and B only.
+//Your task is to change it into a string such that there are no matching adjacent characters.
+//To do this, you are allowed to delete zero or more characters in the string.
+//Your task is to find the minimum number of required deletions.
+//AABAAB needs two deletions!
+function alternatingCharacters(s) {
+
+    let aDeletion = 0;
+    let bDeletion = 0;
+
+    let aArr = s.match(/A{2,}/g);
+    let bArr = s.match(/B{2,}/g);
+
+    if (aArr != null) {
+
+        for (let i = 0; i < aArr.length; i++) {
+            aDeletion += (aArr[i].length - 1);
+        }
+    }
+
+    if (bArr != null) {
+
+        for (let i = 0; i < bArr.length; i++) {
+            bDeletion += (bArr[i].length - 1);
+        }
+
+    }
+
+    return (aDeletion + bDeletion);
 }
