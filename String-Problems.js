@@ -56,7 +56,7 @@ function alternate(s) {
                 let pattern = "[^" + validChars[i] + validChars[j] + "]";
                 let regx = new RegExp(pattern, "g");
                 let newStr = s.replace(regx, "");
-                               
+
 
                 let result = newStr.match(/^([a-z])(?!\1)([a-z])(?:\1\2)*\1?$/g);
 
@@ -72,3 +72,62 @@ function alternate(s) {
     return maximumLength;
 }
 
+// ***Separate the Numbers***
+//A numeric string, S, is beautiful if it can be split into a sequence of two or more positive integers
+//a[i]-a[i-1]=1 for any 1<i<=n  (i.e., each element in the sequence is 1 more than the previous element).
+//No a[i] contains a leading zero. For example, we can split s=10203 into the sequence {1,02,03},
+//But it is not beautiful because 02 and 03 have leading zeroes.
+var startNumber;
+//part 1
+function checkBeautifulNumeric(s) {
+
+   
+    let finalResult = "NO\n";
+    // Leading Zero must be avoided!
+    if (s[0] === "0") {
+        process.stdout.write(finalResult);
+        return;
+    }
+
+    for (let i = 1; i <= (s.length / 2); i++) {
+
+        let response = isBeautifulNumeric(s, i);
+        if (response === true) {
+            finalResult = "YES " + startNumber + "\n";
+            break;
+        }
+
+    }
+    process.stdout.write(finalResult);
+}
+//part 2
+function isBeautifulNumeric(s, selectedLen) {
+
+    let isBeautiful = true;
+    let numb = s.substr(0, selectedLen);
+
+    /*This number is suppousted to start the beautiful sequence!*/
+    startNumber = numb;
+
+    let cursor = selectedLen;
+    let desiredNextNumb = parseInt(numb) + 1;
+
+    while (cursor <= (s.length - 1)) {
+
+        let lenNextNumber = desiredNextNumb.toString().length;
+        let actualNextNumb = s.substr(cursor, lenNextNumber);
+
+        if (actualNextNumb != desiredNextNumb || (actualNextNumb[0] === "0")) {
+            isBeautiful = false;
+            return isBeautiful;
+        }
+
+        desiredNextNumb += 1;
+        cursor += actualNextNumb.length;
+    }
+    return isBeautiful;
+}
+//part 3
+function separateNumbers(s) {
+    checkBeautifulNumeric(s);
+}
