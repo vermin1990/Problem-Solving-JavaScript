@@ -1,4 +1,4 @@
-// ***Super Reduced String***
+// *** Super Reduced String ***
 //Reduce the string to its shortest length by doing a series of operations.
 //In each operation select a pair of adjacent lowercase letters that match,
 //And delete them. For instance, the string aab could be shortened to b in one operation.
@@ -72,7 +72,7 @@ function alternate(s) {
     return maximumLength;
 }
 
-// ***Separate the Numbers***
+// *** Separate the Numbers ***
 //A numeric string, S, is beautiful if it can be split into a sequence of two or more positive integers
 //a[i]-a[i-1]=1 for any 1<i<=n  (i.e., each element in the sequence is 1 more than the previous element).
 //No a[i] contains a leading zero. For example, we can split s=10203 into the sequence {1,02,03},
@@ -81,7 +81,7 @@ var startNumber;
 //part 1
 function checkBeautifulNumeric(s) {
 
-   
+
     let finalResult = "NO\n";
     // Leading Zero must be avoided!
     if (s[0] === "0") {
@@ -130,4 +130,27 @@ function isBeautifulNumeric(s, selectedLen) {
 //part 3
 function separateNumbers(s) {
     checkBeautifulNumeric(s);
+}
+
+// *** Funny String *** 
+//To determine whether a string is funny, create a copy of the string in reverse
+//Iterating through each string, compare the absolute difference in the ascii
+//Values of the characters at positions 0 and 1, 1 and 2 and so on to the end
+//If the list of absolute differences is the same for both strings, they are funny.
+function funnyString(s) {
+
+    let isFunny = "Funny";
+    for(let i=s.length-1; i >=1; i--){
+
+        let diffOrigin = Math.abs(s.charCodeAt(i)-s.charCodeAt(i-1));
+        let j = (s.length-1) - i ;
+        let diffReversed = Math.abs(s.charCodeAt(j+1)-s.charCodeAt(j));
+
+        if(diffOrigin!==diffReversed){
+            isFunny = "Not Funny";
+            break;
+        }
+    }
+
+    return isFunny;
 }
