@@ -186,3 +186,6 @@ function alternatingCharacters(s) {
 
     return (aDeletion + bDeletion);
 }
+
+// *** Determining DNA Health *** 
+//This problem is solved using [Ah-Corasick] Algorithm
